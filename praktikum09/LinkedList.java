@@ -74,13 +74,59 @@ public class LinkedList {
         }
     }
 
+    public void insertAt(int index, int key) {
+        Node newNode = new Node(key, null);
+
+        if (index == 0) {
+            addFirst(key);
+        } else {
+            Node currentNode = head;
+
+            for (int i = 0; i < index - 1; i++) {
+                currentNode = currentNode.next;
+            }
+
+            newNode.next = currentNode.next;
+            currentNode.next = newNode;
+        }
+    }
+
+    public void insertBefore(int key, int input) {
+        Node newNode = new Node(input, null);
+
+        if (!isEmpty()) {
+            Node currentNode = head;
+
+            if (currentNode.data == key) {
+                addFirst(input);
+            } else {
+                while (currentNode.next != null) {
+                    if (currentNode.next.data == key) {
+                        newNode.next = currentNode.next;
+                        currentNode.next = newNode;
+                        break;
+                    }
+
+                    currentNode = currentNode.next;
+                }
+            }
+        } else {
+            System.out.println("Linked list kosong");
+        }
+    }
+
     public int getData(int index) {
         Node currentNode = head;
 
         for (int i = 0; i < index; i++) {
+            if (currentNode.next == null) {
+                return -1;
+            }
             currentNode = currentNode.next;
         }
-
+        if (currentNode == null) {
+            return -1;
+        }
         return currentNode.data;
     }
 
@@ -116,7 +162,7 @@ public class LinkedList {
         } else {
             Node currentNode = head;
 
-            while (currentNode.next.next != null) {
+            while (currentNode.next != null) {
                 if (currentNode.next.next == null) {
                     currentNode.next = null;
                     break;
@@ -139,9 +185,28 @@ public class LinkedList {
                     currentNode.next = currentNode.next.next;
                     break;
                 }
-
                 currentNode = currentNode.next;
             }
+        }
+    }
+
+    public void removeAt(int index) {
+        if (isEmpty()) {
+            System.out.println("Linked list kosong");
+        } else if (index == 0) {
+            removeFirst();
+        } else {
+            Node currentNode = head;
+
+            for (int i = 0; i < index - 1; i++) {
+                if (currentNode.next == null) {
+                    System.out.println("Indeks melebihi batas");
+                    return;
+                }
+                currentNode = currentNode.next;
+            }
+
+            currentNode.next = currentNode.next.next;
         }
     }
 }

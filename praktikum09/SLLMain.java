@@ -16,6 +16,11 @@ public class SLLMain {
         myLinkedList.print();
         myLinkedList.insertAfter(700,300);
         myLinkedList.print();
+        myLinkedList.insertBefore(500,400);
+        myLinkedList.print();
+        myLinkedList.insertAt(3,600);
+        myLinkedList.print();
+
 
         System.out.println("Data pada index ke-1 : " + myLinkedList.getData(1));
         System.out.println("Data 300 berada pada index ke-" + myLinkedList.indexOf(300));
@@ -26,5 +31,8 @@ public class SLLMain {
         myLinkedList.print();
         myLinkedList.removeLast();
         myLinkedList.print();
+        myLinkedList.removeAt(1);
+        myLinkedList.print();
+
     }    
 }
